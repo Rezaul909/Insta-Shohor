@@ -16,7 +16,6 @@ const isLiked = (id) => {
 };
 
 const addToLiked = (id) => {
-  console.log(likedPostsId);
     likedPostsId.push(id);
     showPosts(posts);
 };
@@ -36,6 +35,7 @@ const switchTab = (id) => {
         document.getElementById( "posts" ).style.display = "grid";
         document.getElementById( "liked" ).style.display = "none";
         document.getElementById( "reported" ).style.display = "none";
+        document.getElementById("que-ans").style.display = 'block';
     } else if (id === "liked") {
         document.getElementById( "liked" ).style.display = "block";
         document.getElementById( "posts" ).style.display = "none";
@@ -52,7 +52,6 @@ const switchTab = (id) => {
 };
 
 const createPost = (post) => {
-  console.log(post);
     const image = post.image;
     const div = document.createElement( "article" );
     div.classList.add( "post" );
@@ -144,21 +143,27 @@ const showPosts = (posts) => {
 };
 
 const displayLikedPosts = () => {
-  document.getElementById( "liked" ).innerHTML = "";
+    const div1 = document.createElement("div");
+    document.getElementById( "liked" ).innerHTML = `<h1>Liked posts</h1>`;
+    document.getElementById( "liked" ).appendChild(div1);
     const likedPosts = getLikedPosts();
     likedPosts.forEach((post) => {
-        const div = createPost(post);
+        const div = createPost(post);   
         document.getElementById( "liked" ).appendChild(div);
     });
+    document.getElementById("que-ans").style.display = 'none';
 };
 
 const displayReportedPosts = () => {
-  document.getElementById( "reported" ).innerHTML = "";
+    const div1 = document.createElement("div");
+    document.getElementById( "reported" ).innerHTML = `<h1>Reported posts</h1>`;
+    document.getElementById( "reported" ).appendChild(div1);
     const reportedPosts = getReportedPosts();
     reportedPosts.forEach((post) => {
         const div = createPost(post);
         document.getElementById( "reported" ).appendChild(div);
     });
+    document.getElementById("que-ans").style.display = 'none';
 };
 
 const loadPosts = async () =>{
